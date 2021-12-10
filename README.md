@@ -1,23 +1,116 @@
 # Digital-Image-Processing
 Resizing, DST, IDST, Power Transform, Log Transform using inbuilt and without using inbuilt functions in MATLAB.
 
+**QUESTIONS**
+1.  Resize the given image breadthwise by pixel deletion. The output is required to have half as many columns as the input.
+2.  (a) Compute DST for the given matrix. Print the transformation kernel obtained on calculations and the transformed matrix. Matrix: [1 2 3 4, 5 6 7 8, 9 10 11 12, 13 14 15 16]
+
+    (b) Compute DST and IDST for the given image.
+3.  Write a matlab program to demonstrate the following operations: log transform, power-law transform (gamma=0.25). Display the modified image and its respective histogram for each operation. 
+
 # RESIZING
-Image interpolation occurs when you resize or distort your image from one pixel grid to another. Image resizing is necessary when you need to increase or decrease the total number of pixels, whereas remapping can occur when you are correcting for lens distortion or rotating an image. Zooming refers to increase the quantity of pixels, so that when you zoom an image, you will see more detail.
+
+**Brief Description:** 
+
+The following can be implemented using the concept of image sampling and quantisation. Image interpolation/decimation is a basic tool used for zooming and shrinking. 
+
+**Shrinking**- It may be viewed as undersampling. Image shrinking is performed by row-column deletion. 
+
+**Algorithmic Steps:** 
+
+• Obtain the given image in matlab using size( ) function 
+
+• Convert the given image into grayscale 
+
+• Take two loops, one for a row and the other for a column 
+
+• Delete the pixels column wise 
+
+• Display the output image (Shrinked image)
 
 # DISCRETE SINE TRANSFORM (DST) 
-Converts digital information into its equivalent frequency domain by partitioning image pixel matrix into blocks of size N*N, N depends upon the type of image. 
-For example if we used a black & white image of 8 bit then all shading of black & white color can be expressed into 8 bit hence we use N=8, similarly for color image of 24 bit we can use N=24 but using block size N=24, time complexity may increase. Hence we operate DST on individual color component for a color image.
 
-**One Dimensional DST**
+**Brief Description:** 
 
-![image](https://user-images.githubusercontent.com/76071184/145417662-76194d5e-bb47-4b4e-b98b-1dd69748719a.png)
+The discrete sine transform is a linear, invertible function F : RN > RN (where R denotes the set of real numbers), or equivalently an N × N square matrix. There are several variants of the DST with slightly modified definitions. The N real numbers x0, xN − 1 are transformed into the N real numbers X0, XN −1 according to one of the formulas: 
 
-**Two Dimensional DST**
+**One Dimensional DST-**
 
-![image](https://user-images.githubusercontent.com/76071184/145417863-4bb09715-2aea-42eb-9ff3-edd8025748bd.png)
+![image](https://user-images.githubusercontent.com/76071184/145540514-2ec1d498-1839-4a45-9440-78c74720944c.png)
 
-# POWER LAW TRANFORM
-A variety of devices for image capture, printing, and display respond according to a power law. The exponent in power law equation is referred to as gamma Þ process used to correct this power law response phenomena is called gamma correction. 
+
+**Algorithmic Steps:**
+
+• Take the given matrix as input 
+
+• Perform DST operation on matrix 
+
+• Calculate the transformation kernel for the value 
+
+• Next, Calculate the transformed matrix 
+
+• Then display the transformation kernel and transformed matrix
+
+**Two Dimensional DST-**
+
+**Brief Description:** 
+
+An image is 2-D pixel matrix where each position (i,j) represents a colour value for that particular point or position. Hence to transform an image into its equivalent DST matrix we use 2-D DST. 
+
+![image](https://user-images.githubusercontent.com/76071184/145540875-19f91758-7a75-4790-ba0f-efe329d126e3.png)
+
+**Algorithmic Steps:**
+
+• Read the given image in matlab 
+
+• Convert the image into grayscale image 
+
+• Perform DST operation on image 
+
+• We will get a DST image, and then apply IDST operation on DST image 
+
+• We will get a reconstructed image (original image) of same size Display the Original, DST and Reconstructed images
+
 
 # LOG TRANSFORM
-Log transformation of an image means replacing all pixel values, present in the image, with its logarithmic values. Log transformation is used for image enhancement as it expands dark pixels of the image as compared to higher pixel values.
+
+**Brief Description:** 
+
+Log transformation means replacing each pixel value with its logarithm. The general form of log transformation function is 
+
+**s = T(r) = c*log(1+r)**
+
+Where, ‘s’ and ‘r’ are the output and input pixel values and c is the scaling constant represented by the following expression (for 8-bit) 
+
+**c=255/(log(1+max_input_pixel_value))**
+
+The value of c is chosen such that we get the maximum output value corresponding to the bit size used. e.g for 8 bit image, c is chosen such that we get max value equal to 255. 
+
+**Algorithmic Steps:**
+
+• Read the given image in Matlab 
+
+• Initialize final image to Id 
+
+• Transformation using formula take place in the ‘x’ for loop display the original and transformed image side by side 
+
+
+# POWER LAW TRANFORM
+
+**Brief Description:** 
+
+The general form of Power law (Gamma) transformation function is
+
+**s=c*r^γ**
+
+Where, ‘s’ and ‘r’ are the output and input pixel values, respectively and ‘c’ and γ are the positive constants. Like log transformation, power law curves with γ <1 map a narrow range of dark input values into a wider range of output values, with the opposite being true for higher input values. Similarly, for γ >1, we get the opposite result. 
+
+**Algorithmic Steps:** 
+
+• Read the given image in Matlab 
+
+• Initialize final image to Id 
+
+• Transformation using formula take place in the ‘y’ for loop 
+
+• Display original and transformed image side by side
